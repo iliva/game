@@ -1,0 +1,75 @@
+<svg ng-attr-height='{{height}}' ng-attr-width='{{width}}'>
+
+	<!-- lines between points -->
+	<g class="lines">
+		<line ng-repeat="point in points track by $index" 
+			ng-attr-stroke-width='{{point.strokeWidth}}'
+			ng-attr-stroke='{{point.stroke}}'
+			ng-attr-x1='{{point.cx}}'
+			ng-attr-y1='{{point.cy}}'
+			ng-attr-x2='{{ points[$index - 1].cx ? points[$index - 1].cx : point.cx }}'
+			ng-attr-y2='{{ points[$index - 1].cy ? points[$index - 1].cy : point.cy }}' />
+	</g>
+	
+	
+	<!-- ticks on the y axis -->
+	<g class="left-ticks">
+		<line class="border"
+			ng-repeat="tick in ticks"
+			ng-attr-x1="{{left}}"
+			ng-attr-y1="{{tick.value}}"
+			ng-attr-x2="{{left - 5}}"
+			ng-attr-y2="{{tick.value}}" />
+
+		<text class="label" fill="#babec5"
+			ng-repeat="tick in ticks" 
+			ng-attr-x="{{left - 15}}" 
+			ng-attr-y="{{top - tick.value - 30}}"> 
+				{{tick.text}} 
+		</text>			
+	
+	</g>
+
+	<!-- ticks on the x axis -->
+	<g class="bottom-ticks">
+		<line class="border"
+			ng-repeat="point in points"
+			ng-attr-x1="{{point.cx}}"
+			ng-attr-y1="{{bottom}}"
+			ng-attr-x2="{{point.cx}}"
+			ng-attr-y2="{{bottom + 5}}" />
+		
+		<text class="label" fill="#babec5"
+			ng-repeat="point in points" 
+			ng-attr-x="{{point.cx}}" 
+			ng-attr-y="{{bottom + 17}}"> 
+				{{point.x}}
+		</text>
+	</g>
+	
+	<!-- reference axes -->
+	<g class="axes">
+		<!-- axis y -->
+		<line class="border" 
+			y1="0" 
+			ng-attr-y2="{{bottom}}" 
+			ng-attr-x1="{{left}}" 
+			ng-attr-x2="{{left}}"  />
+			
+		<!-- axis х -->
+		<line class="border" 
+			ng-attr-y1="{{bottom}}" 
+			ng-attr-y2="{{bottom}}" 
+			ng-attr-x1="{{left}}" 
+			ng-attr-x2="{{right}}"  />	
+	</g>			
+	
+	<!-- datapoints -->
+	<g class="datapoints" ng-transclude></g>
+	
+	<!-- axis labels -->
+	<text transform="rotate(-90)" ng-attr-x="{{0 - (bottom/2 + 50)}}" y="10" fill="#babec5"> Відгадані картинки</text>
+	<text ng-attr-x="{{right/2 - 40}}" ng-attr-y="{{bottom+30}}" fill="#babec5"> Зіграні ігри </text>
+	
+</svg>
+

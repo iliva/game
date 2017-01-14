@@ -1,5 +1,5 @@
 # Online game "Guess parts of Ukraine"
-<a href="http://game.lirk.in.ua/">game.lirk.in.ua</a><br>
+<a href="http://www.healthcenter.ileft.s-host.net/">healthcenter.ileft.s-host.net</a><br>
 For the traveling company National Health Center
 
 You'll be shown 10 photos of some parts of the country. The task is to guess what region is pictured at a certain photo.
